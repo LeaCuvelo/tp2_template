@@ -1,11 +1,17 @@
+from models import Samples
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 import os
+import json
 
 class Database(object):
-    session = None
+    session = None 
+
+    #Database Init
+
     db_user = os.getenv("DB_USER") if os.getenv("DB_USER") != None else "example"
     db_pass = os.getenv("DB_PASS") if os.getenv("DB_PASS") != None else "example"
     db_host = os.getenv("DB_HOST") if os.getenv("DB_HOST") != None else "db"
@@ -26,5 +32,14 @@ class Database(object):
             Session = sessionmaker(bind=engine)
             self.session = Session()
             self.Base.metadata.create_all(engine)
+
         return self.session
     
+    #Get methods
+    def get_sample(self, sampleNumberId):
+        session = self.get_session()
+        result = session.query(Samples).filter_by(id = sampleNumberId)
+        session.close()
+        return [r.serialize() for r in result]
+
+
