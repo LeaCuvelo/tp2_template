@@ -40,6 +40,7 @@ class Database(object):
         session = self.get_session()
         result = session.query(Samples).filter_by(id = sampleNumberId)
         session.close()
+
         return [r.serialize() for r in result]
 
 

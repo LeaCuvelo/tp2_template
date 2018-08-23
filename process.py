@@ -1,19 +1,33 @@
-import MySQLdb
+from random import randint
+from database import Database
+from models import Samples
 
-db = MySQLdb.connect(host="localhost",    # your host, usually localhost
-                     user="john",         # your username
-                     passwd="megajonhy",  # your password
-                     db="jonhydb")        # name of the data base
+def insertSamples(session):
 
-# you must create a Cursor object. It will let
-#  you execute all the queries you need
-cur = db.cursor()
+    ### Start generate values random ###
+    idValue++
+    temperatureValue = randint(0,100)
+    humidityValue = randint(0,100)
+    pressureValue = randint(1020,1030)
+    windspeedValue = randint(5,300)
+    ### End values random ###
 
-# Use all the SQL you like
-cur.execute("SELECT * FROM YOUR_TABLE_NAME")
+    ### Start insert to DB ###
+    toInsert = Sample()
+    toInsert.id = idValue++
+    toInsert.temperature = temperatureValue
+    toInsert.humidity = humidityValue
+    toInsert.pressure = pressureValue
+    toInsert.windspeed = windspeedValue
+    ### End insert to DB ###
+    
+    session.add(toInsert)
+    session.commit()
+    session.close ()
 
-# print all the first cell of all the rows
-for row in cur.fetchall():
-    print row[0]
+if __name__ == '__main__':
+  db = Database()
+  session = db.get_session()
+  insertSamples(session)
 
-db.close()
+
