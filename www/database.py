@@ -1,5 +1,4 @@
 from models import Samples
-
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
@@ -11,7 +10,6 @@ class Database(object):
     session = None 
 
     #Database Init
-
     db_user = os.getenv("DB_USER") if os.getenv("DB_USER") != None else "example"
     db_pass = os.getenv("DB_PASS") if os.getenv("DB_PASS") != None else "example"
     db_host = os.getenv("DB_HOST") if os.getenv("DB_HOST") != None else "db"
@@ -35,6 +33,13 @@ class Database(object):
 
         return self.session
     
+    #Insert data
+    def insertSample(self, sample):
+        session=self._get_session()
+        session.add(sample)
+        session.commit()
+        session.close()
+
     #Get methods
     def get_sample(self, sampleNumberId):
         session = self.get_session()

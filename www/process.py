@@ -2,28 +2,21 @@ from random import randint
 from database import Database
 from models import Samples
 
+import time
+
 def insertSamples(session):
 
-    ### Start generate values random ###
-    idValue++
-    temperatureValue = randint(0,100)
-    humidityValue = randint(0,100)
-    pressureValue = randint(1020,1030)
-    windspeedValue = randint(5,300)
-    ### End values random ###
-
-    ### Start insert to DB ###
+    ### Generate value random and start insert data to DB ###
     toInsert = Sample()
-    toInsert.id = idValue++
-    toInsert.temperature = temperatureValue
-    toInsert.humidity = humidityValue
-    toInsert.pressure = pressureValue
-    toInsert.windspeed = windspeedValue
-    ### End insert to DB ###
+    #toInsert.id = idValue++ This value is autoincremental.
+    toInsert.temperature = randint(0,100)
+    toInsert.humidity = randint(0,100)
+    toInsert.pressure = randint(1020,1030)
+    toInsert.windspeed = randint(5,300)
+    ### End generate and insert to DB ###
     
-    session.add(toInsert)
-    session.commit()
-    session.close ()
+    db.insertSamples(toInsert)
+    time.sleep(1)
 
 if __name__ == '__main__':
   db = Database()
