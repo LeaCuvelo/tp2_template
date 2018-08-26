@@ -25,5 +25,6 @@ class Samples(Base):
     		'pressure': self.pressure,
     		'windspeed': self.windspeed 
     	}
+    
 
 

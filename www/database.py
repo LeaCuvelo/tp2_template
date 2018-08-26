@@ -10,14 +10,15 @@ class Database(object):
     session = None 
 
     #Database Init
-    db_user = os.getenv("DB_USER") if os.getenv("DB_USER") != None else "example"
-    db_pass = os.getenv("DB_PASS") if os.getenv("DB_PASS") != None else "example"
+    db_user = os.getenv("DB_USER") if os.getenv("DB_USER") != None else "root"
+    db_pass = os.getenv("DB_PASS") if os.getenv("DB_PASS") != None else "root"
     db_host = os.getenv("DB_HOST") if os.getenv("DB_HOST") != None else "db"
     db_name = os.getenv("DB_NAME") if os.getenv("DB_NAME") != None else "samples"
     db_port = os.getenv("DB_PORT") if os.getenv("DB_PORT") != None else "3306"
     Base = declarative_base()
     
-    def get_session(self):
+    #This function is a Singleton of database
+    def getSession(self):
         """Singleton of db connection
 
         Returns:
@@ -32,20 +33,30 @@ class Database(object):
             self.Base.metadata.create_all(engine)
 
         return self.session
+    #END function Singleton of database
     
-    #Insert data
+    #Function for Insert data
     def insertSample(self, sample):
-        session=self._get_session()
+        session=self.getSession()
         session.add(sample)
         session.commit()
         session.close()
+    #END function for Insert data
 
-    #Get methods
-    def get_sample(self, sampleNumberId):
-        session = self.get_session()
+    #Function for get sample
+    def getSample(self, sampleNumberId):
+        session = self.getSession()
         result = session.query(Samples).filter_by(id = sampleNumberId)
         session.close()
-
         return [r.serialize() for r in result]
+    #END function for get sample
+
+    #Function for get last sample
+    def getLastSample(self):
+        session = self.getSession()
+        result = session.get()
+        session.close()
+        return [r.serialize() for r in result]
+    #END Function for get last sample
 
 
