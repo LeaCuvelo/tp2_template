@@ -43,7 +43,7 @@ class Database(object):
         session.close()
     #END function for Insert data
 
-    #Function for get sample
+    #Function for get sample  -->TODO borrar esta funcion
     def getSample(self, sampleNumberId):
         session = self.getSession()
         result = session.query(Samples).filter_by(id = sampleNumberId)
@@ -51,12 +51,37 @@ class Database(object):
         return [r.serialize() for r in result]
     #END function for get sample
 
+    #Function for get the last 10 samples
+    def getAverageSamples(self):
+        session = self.getSession()
+        result = session.query(Samples).order_by(Samples.id.desc()).limit(10)
+        session.close()
+        auxTemperature = 0
+        auxHumidity = 0
+        auxPressure = 0
+        auxWindspeed = 0
+        for sample in result:
+            auxTemperature = auxTemperature + sample.temperature
+            auxHumidity = auxHumidity + sample.humidity
+            auxPressure = auxPressure + sample.pressure
+            auxWindspeed = auxWindspeed + sample.windspeed
+        tenLastSampleAverage = Samples()
+
+        tenLastSampleAverage.temperature = int(auxTemperature)/10
+        tenLastSampleAverage.humidity = int(auxHumidity)/10
+        tenLastSampleAverage.pressure = int(auxPressure)/10
+        tenLastSampleAverage.windspeed = int(auxWindspeed)/10
+        return tenLastSampleAverage.serialize()
+    #END Function for get the last 10 samples
+
     #Function for get last sample
     def getLastSample(self):
         session = self.getSession()
-        result = session.get()
+        result = session.query(Samples).order_by(Samples.id.desc()).limit(1)
         session.close()
         return [r.serialize() for r in result]
     #END Function for get last sample
+
+
 
 

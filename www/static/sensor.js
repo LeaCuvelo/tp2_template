@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 $("#start-sense").click(function(){
-	$.ajax({   //TODO detallar por que el uso de ajax
+	$.ajax({   //TODO detallar por que el uso de ajax -- EN LA DOCUMENTACION
 		url: "/sensor",
 	    type: 'get',	            
 		success: function(data, status, jqXHR) {
@@ -23,7 +23,7 @@ $("#start-sense").click(function(){
 
 $("#get-last-sample").click(function(){
 	$.ajax({   
-		url: "last-sample",
+		url: "/last-sample",
 	    type: 'get',	            
 		success: function(data, status, jqXHR) {
 			$("#last-sample-ID").html(data[0].id);  //Data en 0 por q es JSON array
@@ -31,6 +31,24 @@ $("#get-last-sample").click(function(){
 			$("#last-sample-humidity").html(data[0].humidity);
 			$("#last-sample-pressure").html(data[0].pressure);
 			$("#last-sample-windspeed").html(data[0].windspeed);
+
+        	console.log(data);   //TODO borrar los logs          
+        },
+        error: function(msg, status, jqXHR) {
+            console.log(msg);	            
+        }
+    });
+});
+
+$("#get-average").click(function(){
+	$.ajax({   
+		url: "/average",
+	    type: 'get',	            
+		success: function(data, status, jqXHR) {
+			$("#average-sample-temperature").html(data.temperature);
+			$("#average-sample-humidity").html(data.humidity);
+			$("#average-sample-pressure").html(data.pressure);
+			$("#average-sample-windspeed").html(data.windspeed);
 
         	console.log(data);   //TODO borrar los logs          
         },
