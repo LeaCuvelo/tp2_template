@@ -20,14 +20,6 @@ def index():
     subprocess.Popen(cmd.split(), preexec_fn=os.setsid)
     return render_template('index.html')
 
-
-@app.route('/sensor', methods = ["GET"])  #Cambiar dsp, para q renderize,
-def start_sensors():
-    muestra = db.getSample(1)
-    #SACAR UNA MUESTRA DE LA DB Y MANDARLA EN VEZ DE 4
-    # llamar a get muestra
-    return jsonify(muestra)  #No renderiza html, devuelve ajax nomas
-
 #This method return the average of the 10 lastest samples
 @app.route('/average', methods = ["GET"])
 def get_average():

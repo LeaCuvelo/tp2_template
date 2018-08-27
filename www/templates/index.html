@@ -47,18 +47,18 @@
                     <label class="col-sm-2 col-form-label">Select sampling period:</label>
                     <div class="col-sm-10">
                         <select class="form-control" style="width: 300px;" name='period' id="period">
-                            <option value='0'>Default</option>
+                            <option value='1'>Default</option>
                             <option value='1'>1 segundo</option>
                             <option value='2'>2 segundo</option>
-                            <option value='3'>5 segundo</option>
-                            <option value='4'>10 segundo</option>
-                            <option value='5'>30 segundo</option>
-                            <option value='6'>60 segundo</option>
+                            <option value='5'>5 segundo</option>
+                            <option value='10'>10 segundo</option>
+                            <option value='30'>30 segundo</option>
+                            <option value='60'>60 segundo</option>
                         </select>
                     </div>
                 </div>
             </form>
-            <input type="button" class="btn btn-warning" id="start-sense" value="Start Sense" />
+            <input type="button" class="btn btn-warning" id="start-sense" value="Start Sense" onclick="startSensor();"/>
             <input type="button" class="btn btn-secondary" id="get-last-sample" value="Last Sample" />
             <input type="button" class="btn btn-secondary" id="get-average-sample" value="Average Sample" />
         </div>
@@ -71,7 +71,7 @@
                     <div calss="card-body">
                         <h3 class="card-title"> <strong>Temperature</strong> <img class="card-img-top" src="/static/img/Temperature.png" style="width: 36px; height: 36px"> </h3>
                         <h2 class="" id="sample-one-temperature">0</h2>
-                        <h6 class="" id="last-sample-temperature"> <strong>Average:</strong> 0</h6>
+                        <h6 class="" id="average-temperature"> <strong>Average:</strong> 0</h6>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                     <div calss="card-body">
                         <h3 class="card-title"> <strong>Humidity</strong> <img class="card-img-top" src="/static/img/Humidity.png" style="width: 36px; height: 36px"> </h3>
                         <h2 class="" id="sample-one-humidity">0</h2>
-                        <h6 class="" id="last-sample-humidity"> <strong>Average:</strong> 0</h6>
+                        <h6 class="" id="average-humidity"> <strong>Average:</strong> 0</h6>
                     </div>
                 </div>
             </div>
@@ -89,7 +89,7 @@
                     <div calss="card-body">
                         <h3 class="card-title"> <strong>Pressure</strong> <img class="card-img-top" src="/static/img/Pressure.png" style="width: 36px; height: 36px"> </h3>
                         <h2 class="" id="sample-one-pressure">0</h2>
-                        <h6 class="" id="last-sample-pressure"> <strong>Average:</strong> 0</h6>
+                        <h6 class="" id="average-pressure"> <strong>Average:</strong> 0</h6>
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@
                     <div calss="card-body">
                         <h3 class="card-title"> <strong>Windspeed</strong> <img class="card-img-top" src="/static/img/Windspeed.png" style="width: 36px; height: 36px"> </h3>
                         <h2 class="" id="sample-one-windspeed">0</h2>
-                        <h6 class="" id="last-sample-windspeed"> <strong>Average:</strong> 0</h6>
+                        <h6 class="" id="average-windspeed"> <strong>Average:</strong> 0</h6>
                     </div>
                 </div>
             </div>
