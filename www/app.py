@@ -14,8 +14,6 @@ pro = Process()
 
 @app.route('/')
 def index():
-
-    #TODO moverlo de aca!  es el init del proceso que genera las muestras y lo manda a la db
     cmd = "python3 process.py"
     subprocess.Popen(cmd.split(), preexec_fn=os.setsid)
     return render_template('index.html')

@@ -20,65 +20,38 @@ $(document).ready(function () {
 	}
 
 	function senseLastVariable() {
-		$.get("last-sample", function (data) {
-			$("#sample-one-ID").html(data[0].id);  
-			$("#sample-one-temperature").html(data[0].temperature);
-			$("#sample-one-humidity").html(data[0].humidity);
-			$("#sample-one-pressure").html(data[0].pressure);
-			$("#sample-one-windspeed").html(data[0].windspeed);
-			console.log("last");
-
-		});
-	}
-
-	function senseAverage() {
-		$.get("average", function (data) {
-			$("#average-temperature").html(data.temperature);
-			$("#average-humidity").html(data.humidity);
-			$("#average-pressure").html(data.pressure);
-			$("#average-windspeed").html(data.windspeed);
-			console.log("average");
-
-		});
-	}
-
-	$("#get-last-sample").click(function () {
 		$.ajax({
 			url: "/last-sample",
 			type: 'get',
 			success: function (data, status, jqXHR) {
-				$("#last-sample-ID").html(data[0].id);  //Data en 0 por q es JSON array
 				$("#last-sample-temperature").html(data[0].temperature);
 				$("#last-sample-humidity").html(data[0].humidity);
 				$("#last-sample-pressure").html(data[0].pressure);
 				$("#last-sample-windspeed").html(data[0].windspeed);
-
-				console.log(data);   //TODO borrar los logs          
+				console.log("LAST VARIABLE");
 			},
 			error: function (msg, status, jqXHR) {
 				console.log(msg);
 			}
 		});
-	});
+	}
 
-	$("#get-average").click(function () {
+	function senseAverage() {
 		$.ajax({
 			url: "/average",
 			type: 'get',
-			success: function (data, status, jqXHR) {
-				$("#average-sample-temperature").html(data.temperature);
-				$("#average-sample-humidity").html(data.humidity);
-				$("#average-sample-pressure").html(data.pressure);
-				$("#average-sample-windspeed").html(data.windspeed);
-
-				console.log(data);   //TODO borrar los logs          
+			success: function(data, status, jqXHR){
+				$("#average-temperature").html(data.temperature);
+				$("#average-humidity").html(data.humidity);
+				$("#average-pressure").html(data.pressure);
+				$("#average-windspeed").html(data.windspeed);
+				console.log("average");
 			},
-			error: function (msg, status, jqXHR) {
-				console.log(msg);
+			error: function(msg, status, jqXHR){
+				console.log(msg)
 			}
 		});
-
-	});
+	}
 
 
 
