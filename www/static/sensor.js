@@ -4,19 +4,22 @@ $(document).ready(function () {
 	var control_sense_average;
 	var sensePicker = document.getElementById('period');
 	document.getElementById("start-sense").onclick = startSensor;
+	document.getElementById("stop-sense").onclick = stopSensor;
+
 
 	function startSensor() {
 		var intervalValue = sensePicker.options[sensePicker.selectedIndex].value;
 		start_get_sense(intervalValue);
 	}
-
+	
 	function start_get_sense(senseValue) {
 		control_sense_last_variable = setInterval(senseLastVariable, senseValue * 1000);
 		control_sense_average = setInterval(senseAverage, senseValue * 1000);
 	}
 
-	function stop_get_sense() {
+	function stopSensor() {
 		clearInterval(control_sense_last_variable);
+		clearInterval(control_sense_average);
 	}
 
 	function senseLastVariable() {
@@ -28,10 +31,9 @@ $(document).ready(function () {
 				$("#last-sample-humidity").html(data[0].humidity);
 				$("#last-sample-pressure").html(data[0].pressure);
 				$("#last-sample-windspeed").html(data[0].windspeed);
-				console.log("LAST VARIABLE");
 			},
 			error: function (msg, status, jqXHR) {
-				console.log(msg);
+				console.log("GET LAST VARIABLE ERROR--> " + msg);
 			}
 		});
 	}
@@ -45,14 +47,11 @@ $(document).ready(function () {
 				$("#average-humidity").html(data.humidity);
 				$("#average-pressure").html(data.pressure);
 				$("#average-windspeed").html(data.windspeed);
-				console.log("average");
 			},
 			error: function(msg, status, jqXHR){
-				console.log(msg)
+				console.log("GET AVERAGE ERROR--> " + msg);
 			}
 		});
 	}
-
-
 
 });
