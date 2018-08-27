@@ -66,7 +66,6 @@ class Database(object):
             auxPressure = auxPressure + sample.pressure
             auxWindspeed = auxWindspeed + sample.windspeed
         tenLastSampleAverage = Samples()
-
         tenLastSampleAverage.temperature = int(auxTemperature)/10
         tenLastSampleAverage.humidity = int(auxHumidity)/10
         tenLastSampleAverage.pressure = int(auxPressure)/10
