@@ -5,55 +5,118 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <title>Samples</title>
+    <link rel="shortcut icon" type="image/png" href="/static/img/icon.png" />
+    <title>Meteorology</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/">
     <!-- Aca iran los href a los static/css/default etc-->
-
-
-
-
-    <div>
-        <input type="button" class="btn btn-success" id="start-sense" value="START Sense" />
-        <!-- <button type="button" class="btn btn-primary">Start</button> -->
-    </div>
-
-    <a > Medida 1:  </a>
-    <a> ID: </a> <h1 class="" id="sample-one-ID">0</h1>
-    <a> Temperature: </a> <h1 class="" id="sample-one-temperature">0</h1>
-    <a> Humidity: </a> <h1 class="" id="sample-one-humidity">0</h1>
-    <a> Pressure: </a> <h1 class="" id="sample-one-pressure">0</h1>
-    <a> Windspeed: </a> <h1 class="" id="sample-one-windspeed">0</h1>
-
-    <div>
-        <input type="button" class="btn btn-success" id="get-last-sample" value="GET Last Sample" />
-    </div>
-
-    <a > Ultima Medida </a>
-    <a> ID: </a> <h1 class="" id="last-sample-ID">0</h1>
-    <a> Temperature: </a> <h1 class="" id="last-sample-temperature">0</h1>
-    <a> Humidity: </a> <h1 class="" id="last-sample-humidity">0</h1>
-    <a> Pressure: </a> <h1 class="" id="last-sample-pressure">0</h1>
-    <a> Windspeed: </a> <h1 class="" id="last-sample-windspeed">0</h1>
-
-    <div>
-        <input type="button" class="btn btn-success" id="get-average" value="GET Average" />
-    </div>
-
-    <a > Promedio </a>
-    <a> PROM Temperature: </a> <h1 class="" id="average-sample-temperature">0</h1>
-    <a> PROM Humidity: </a> <h1 class="" id="average-sample-humidity">0</h1>
-    <a> PROM Pressure: </a> <h1 class="" id="average-sample-pressure">0</h1>
-    <a> PROM Windspeed: </a> <h1 class="" id="average-sample-windspeed">0</h1>
-
-    
-
-
 </head>
 
+<!-- Start body -->
 <body>
+    <!-- Start Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Taller de proyecto II</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/LeaCuvelo/tp2_template">Link to Repository</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/LeaCuvelo/tp2_template/wiki">Link to Documentation</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <!-- Start page content -->
+    <div class="container-fluid">
+        <!-- Start jumbotron -->
+        <div class="jumbotron my-4">
+            <h1 class="display-6"> <strong>Welcome to Meteorology System!</strong> </h1>
+            <p class="h6">This web page is a simulation of a weather station. A Raspberry Pi processes and displays the temperature, humidity, pressure and windspeed data. Choose the sampling period and press start.</p>
+            <hr class="my-4">
+            <form>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Select sampling period:</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" style="width: 300px;" name='period' id="period">
+                            <option value='0'>Default</option>
+                            <option value='1'>1 segundo</option>
+                            <option value='2'>2 segundo</option>
+                            <option value='3'>5 segundo</option>
+                            <option value='4'>10 segundo</option>
+                            <option value='5'>30 segundo</option>
+                            <option value='6'>60 segundo</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <input type="button" class="btn btn-warning" id="start-sense" value="Start Sense" />
+            <input type="button" class="btn btn-secondary" id="get-last-sample" value="Last Sample" />
+            <input type="button" class="btn btn-secondary" id="get-average-sample" value="Average Sample" />
+        </div>
+        <!-- End jumbotron -->
+
+        <!-- Start page features -->
+        <div class="row text-center">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="alert alert-danger" role="alert">
+                    <div calss="card-body">
+                        <h3 class="card-title"> <strong>Temperature</strong> <img class="card-img-top" src="/static/img/Temperature.png" style="width: 36px; height: 36px"> </h3>
+                        <h2 class="" id="sample-one-temperature">0</h2>
+                        <h6 class="" id="last-sample-temperature"> <strong>Average:</strong> 0</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="alert alert-info" role="alert">
+                    <div calss="card-body">
+                        <h3 class="card-title"> <strong>Humidity</strong> <img class="card-img-top" src="/static/img/Humidity.png" style="width: 36px; height: 36px"> </h3>
+                        <h2 class="" id="sample-one-humidity">0</h2>
+                        <h6 class="" id="last-sample-humidity"> <strong>Average:</strong> 0</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="alert alert-warning" role="alert">
+                    <div calss="card-body">
+                        <h3 class="card-title"> <strong>Pressure</strong> <img class="card-img-top" src="/static/img/Pressure.png" style="width: 36px; height: 36px"> </h3>
+                        <h2 class="" id="sample-one-pressure">0</h2>
+                        <h6 class="" id="last-sample-pressure"> <strong>Average:</strong> 0</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="alert alert-secondary" role="alert">
+                    <div calss="card-body">
+                        <h3 class="card-title"> <strong>Windspeed</strong> <img class="card-img-top" src="/static/img/Windspeed.png" style="width: 36px; height: 36px"> </h3>
+                        <h2 class="" id="sample-one-windspeed">0</h2>
+                        <h6 class="" id="last-sample-windspeed"> <strong>Average:</strong> 0</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page features -->
+    </div>
+    <!-- End page content -->
+
+    <!-- Start final continer -->
+        <footer class="py-4 bg-dark">
+          <div class="container">
+            <p class="m-0 text-center text-white">Created by</p>
+            <p class="m-0 text-center text-white">Leandro Cuvelo</p>
+            <p class="m-0 text-center text-white">Nahuel Sarubbio</p>
+          </div> 
+        </footer>
+    <!-- End final continer -->
+        
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -62,5 +125,6 @@
     <script src="/static/sensor.js"></script>
 
 </body>
+<!-- End body -->
 
 </html>
