@@ -2,16 +2,15 @@ $(document).ready(function () {
 
 	var control_sense_last_variable;
 	var control_sense_average;
-	var sensePicker = document.getElementById('period');
 	document.getElementById("start-sense").onclick = startSensor;
 	document.getElementById("stop-sense").onclick = stopSensor;
-
+	var sensePicker = document.getElementById('period');
 
 	function startSensor() {
 		var intervalValue = sensePicker.options[sensePicker.selectedIndex].value;
 		start_get_sense(intervalValue);
 	}
-	
+
 	function start_get_sense(senseValue) {
 		control_sense_last_variable = setInterval(senseLastVariable, senseValue * 1000);
 		control_sense_average = setInterval(senseAverage, senseValue * 1000);
@@ -33,7 +32,7 @@ $(document).ready(function () {
 				$("#last-sample-windspeed").html(data[0].windspeed);
 			},
 			error: function (msg, status, jqXHR) {
-				console.log("GET LAST VARIABLE ERROR--> " + msg);
+				console.log("GET LAST VARIABLE ERROR--> " + msg.data);
 			}
 		});
 	}
@@ -49,7 +48,7 @@ $(document).ready(function () {
 				$("#average-windspeed").html(data.windspeed);
 			},
 			error: function(msg, status, jqXHR){
-				console.log("GET AVERAGE ERROR--> " + msg);
+				console.log("GET AVERAGE ERROR--> " + msg.data);
 			}
 		});
 	}
