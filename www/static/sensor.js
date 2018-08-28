@@ -8,10 +8,10 @@ $(document).ready(function () {
 
 	function startSensor() {
 		var intervalValue = sensePicker.options[sensePicker.selectedIndex].value;
-		start_get_sense(intervalValue);
+		startGetSense(intervalValue);
 	}
 
-	function start_get_sense(senseValue) {
+	function startGetSense(senseValue) {
 		control_sense_last_variable = setInterval(senseLastVariable, senseValue * 1000);
 		control_sense_average = setInterval(senseAverage, senseValue * 1000);
 	}
