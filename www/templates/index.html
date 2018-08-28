@@ -40,20 +40,19 @@
         <!-- Start jumbotron -->
         <div class="jumbotron my-4">
             <h1 class="display-6"> <strong>Welcome to Meteorology System!</strong> </h1>
-            <p class="h6">This web page is a simulation of a weather station. A Raspberry Pi processes and displays the temperature, humidity, pressure and windspeed data. Choose the sampling period and press start.</p>
+            <p class="h6">This web page is a simulation of a weather station. A Raspberry Pi processes and displays the last sample of temperature, humidity, pressure and windspeed data, and the average of all measures. Choose the sampling period and press start.</p>
             <hr class="my-4">
             <form>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Select sampling period:</label>
                     <div class="col-sm-10">
                         <select class="form-control" style="width: 300px;" name='period' id="period">
-                            <option value='1'>Default</option>
-                            <option value='1'>1 segundo</option>
-                            <option value='2'>2 segundo</option>
-                            <option value='5'>5 segundo</option>
-                            <option value='10'>10 segundo</option>
-                            <option value='30'>30 segundo</option>
-                            <option value='60'>60 segundo</option>
+                            <option value='1'>1 second</option>
+                            <option value='2'>2 seconds</option>
+                            <option value='5'>5 seconds</option>
+                            <option value='10'>10 seconds</option>
+                            <option value='30'>30 seconds</option>
+                            <option value='60'>60 seconds</option>
                         </select>
                     </div>
                 </div>
