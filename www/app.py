@@ -14,8 +14,7 @@ pro = Process()
 
 @app.route('/')
 def index():
-    cmd = "python3 process.py"
-    subprocess.Popen(cmd.split(), preexec_fn=os.setsid)
+    pro.start_process()
     return render_template('index.html')
 
 #This method return the last sample in DB
